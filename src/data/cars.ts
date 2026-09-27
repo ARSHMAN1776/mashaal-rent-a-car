@@ -58,7 +58,7 @@ export const cars: CarModel[] = [
     silhouetteScale: 1.08,
     roofRails: true,
     moreInCategory: 6,
-    image: "/cars/prado.jpg",
+    image: "/cars/prado.png",
   },
   {
     slug: "revo",
@@ -74,7 +74,7 @@ export const cars: CarModel[] = [
     silhouette: "pickup",
     silhouetteScale: 1,
     moreInCategory: 8,
-    image: "/cars/revo.jpg",
+    image: "/cars/revo.png",
   },
   {
     slug: "v8",
@@ -123,7 +123,7 @@ export const cars: CarModel[] = [
     silhouette: "hatchback",
     silhouetteScale: 1,
     moreInCategory: 7,
-    image: "/cars/cultus.jpg",
+    image: "/cars/cultus.png",
   },
   {
     slug: "alto",
@@ -139,7 +139,7 @@ export const cars: CarModel[] = [
     silhouette: "hatchback",
     silhouetteScale: 0.88,
     moreInCategory: 14,
-    image: "/cars/alto.jpg",
+    image: "/cars/alto.png",
   },
 ];
 
