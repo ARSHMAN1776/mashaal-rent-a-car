@@ -4,9 +4,9 @@ export const siteConfig = {
   parentBrand: "Mashaal Groups",
   parentUrl: "https://www.mashaalgroups.com/",
   tagline: "Monthly fleet rentals, institutionally backed.",
-  whatsappNumber: "923000000000", // TODO: replace with real WhatsApp number (no + or spaces)
-  phoneNumber: "+92 300 0000000", // TODO: replace with real phone number
-  phoneNumberHref: "+923000000000",
+  whatsappNumber: "923042774444",
+  phoneNumber: "0304 2774444",
+  phoneNumberHref: "+923042774444",
   city: "Lahore & Rahim Yar Khan, Punjab, Pakistan", // TODO: confirm service cities
   email: "rentacar@mashaalgroups.com", // TODO: confirm real email
   fleetSize: 50,

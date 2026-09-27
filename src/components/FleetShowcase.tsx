@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { cars, formatPKR } from "@/data/cars";
-import { CarSilhouette } from "./CarSilhouette";
+import { formatPKR, type CarModel } from "@/data/cars";
+import { CarMedia } from "./CarMedia";
 import { SectionLabel } from "./SectionLabel";
 import { WhatsAppInline } from "./WhatsAppButton";
 import { ArrowIcon } from "./icons";
 
-export function FleetShowcase() {
+export function FleetShowcase({ cars }: { cars: CarModel[] }) {
   return (
     <section className="border-t border-line py-24 lg:py-32" id="fleet-preview">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -48,12 +48,7 @@ export function FleetShowcase() {
               >
                 <div className="relative w-full max-w-md">
                   <div className="absolute inset-0 -z-10 rounded-full bg-gold/[0.05] blur-3xl" />
-                  <CarSilhouette
-                    variant={car.silhouette}
-                    scale={car.silhouetteScale}
-                    roofRails={car.roofRails}
-                    className="h-auto w-full text-gold-light/90"
-                  />
+                  <CarMedia car={car} variant="hero" />
                 </div>
               </div>
 

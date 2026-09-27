@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { FleetGrid } from "@/components/FleetGrid";
 import { CTABand } from "@/components/CTABand";
+import { getCarsWithResolvedImages } from "@/lib/carImages";
 
 export const metadata: Metadata = {
   title: "The Fleet — Mashaal Rent A Car",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function FleetPage() {
+  const cars = getCarsWithResolvedImages();
   return (
     <>
       <PageHeader
@@ -20,7 +22,7 @@ export default function FleetPage() {
       />
       <section className="border-t border-line py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <FleetGrid />
+          <FleetGrid cars={cars} />
         </div>
       </section>
       <CTABand />

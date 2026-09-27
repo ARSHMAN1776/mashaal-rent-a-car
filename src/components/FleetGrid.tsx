@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cars, categoryOrder, formatPKR, type CarCategory } from "@/data/cars";
-import { CarSilhouette } from "./CarSilhouette";
+import { categoryOrder, formatPKR, type CarCategory, type CarModel } from "@/data/cars";
+import { CarMedia } from "./CarMedia";
 import { WhatsAppInline } from "./WhatsAppButton";
 
 type Filter = "All" | CarCategory;
 
 const filters: Filter[] = ["All", ...categoryOrder];
 
-export function FleetGrid() {
+export function FleetGrid({ cars }: { cars: CarModel[] }) {
   const [active, setActive] = useState<Filter>("All");
 
   const grouped = categoryOrder
@@ -69,14 +69,9 @@ export function FleetGrid() {
                       <span className="tracked-label text-[10px] text-bronze">
                         {car.make}
                       </span>
-                      <div className="relative mt-2 flex h-32 items-center justify-center">
-                        <div className="absolute inset-0 rounded-full bg-gold/[0.04] blur-2xl" />
-                        <CarSilhouette
-                          variant={car.silhouette}
-                          scale={car.silhouetteScale}
-                          roofRails={car.roofRails}
-                          className="h-full w-full text-gold-light/85"
-                        />
+                      <div className="relative mt-2">
+                        <div className="absolute inset-0 -z-10 rounded-full bg-gold/[0.04] blur-2xl" />
+                        <CarMedia car={car} variant="card" />
                       </div>
                       <h3 className="font-display text-3xl text-cream">
                         {car.name}

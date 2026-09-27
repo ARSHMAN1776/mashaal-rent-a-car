@@ -21,6 +21,7 @@ export interface CarModel {
   silhouetteScale: number; // relative visual size within its family, 0.8–1.15
   roofRails?: boolean;
   moreInCategory: number; // "+N more available in this category"
+  image?: string; // public/ path, e.g. "/cars/fortuner.jpg" — falls back to the line-art silhouette when unset or missing
 }
 
 // Indicative monthly rates (PKR) — placeholders only, confirm before publishing.
@@ -40,6 +41,7 @@ export const cars: CarModel[] = [
     silhouetteScale: 1,
     roofRails: true,
     moreInCategory: 11,
+    image: "/cars/fortuner.png",
   },
   {
     slug: "prado",
@@ -56,6 +58,7 @@ export const cars: CarModel[] = [
     silhouetteScale: 1.08,
     roofRails: true,
     moreInCategory: 6,
+    image: "/cars/prado.jpg",
   },
   {
     slug: "revo",
@@ -71,6 +74,7 @@ export const cars: CarModel[] = [
     silhouette: "pickup",
     silhouetteScale: 1,
     moreInCategory: 8,
+    image: "/cars/revo.jpg",
   },
   {
     slug: "v8",
@@ -87,6 +91,7 @@ export const cars: CarModel[] = [
     silhouetteScale: 1.15,
     roofRails: true,
     moreInCategory: 3,
+    image: "/cars/v8.png",
   },
   {
     slug: "civic",
@@ -102,6 +107,7 @@ export const cars: CarModel[] = [
     silhouette: "sedan",
     silhouetteScale: 1,
     moreInCategory: 9,
+    image: "/cars/civic.png",
   },
   {
     slug: "cultus",
@@ -117,6 +123,7 @@ export const cars: CarModel[] = [
     silhouette: "hatchback",
     silhouetteScale: 1,
     moreInCategory: 7,
+    image: "/cars/cultus.jpg",
   },
   {
     slug: "alto",
@@ -132,6 +139,7 @@ export const cars: CarModel[] = [
     silhouette: "hatchback",
     silhouetteScale: 0.88,
     moreInCategory: 14,
+    image: "/cars/alto.jpg",
   },
 ];
 
