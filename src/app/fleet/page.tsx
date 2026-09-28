@@ -13,19 +13,19 @@ export const metadata: Metadata = {
 export default function FleetPage() {
   const cars = getCarsWithResolvedImages();
   return (
-    <>
+    <div className="bg-[#fbf9f5] min-h-screen">
       <PageHeader
-        eyebrow="The Fleet"
+        eyebrow="The Executive Fleet"
         title="Fifty vehicles."
         italicTitle="Four categories. One standard."
-        description="Every category is anchored by a flagship model — the vehicle you see is representative of the standard held across all 50+ units in that class."
+        description="Every category is anchored by a flagship model — fully inspected, detailed, and available on dedicated 30+ day monthly agreements."
       />
-      <section className="border-t border-line py-20 lg:py-28">
+      <section className="bg-[#fbf9f5] py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <FleetGrid cars={cars} />
         </div>
       </section>
       <CTABand />
-    </>
+    </div>
   );
 }

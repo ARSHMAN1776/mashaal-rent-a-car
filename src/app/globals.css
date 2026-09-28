@@ -1,35 +1,52 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --ink: #170a0c;
-  --surface: #230f13;
-  --surface-2: #2c1317;
-  --line: rgba(201, 162, 75, 0.18);
-  --line-strong: rgba(201, 162, 75, 0.4);
+  /* Core dark background palette — deep obsidian surfaces */
+  --ink: #070708;
+  --surface: #0f0f13;
+  --surface-2: #15151b;
+  --surface-3: #1c1c24;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(201, 162, 75, 0.35);
+
+  /* Gold accent system — prestige gold */
   --gold: #c9a24b;
-  --gold-light: #e8cd8f;
-  --gold-dim: #8a6b34;
-  --cream: #f4ecdd;
-  --bronze: #b09a7c;
-  --bronze-dim: #7a6a54;
+  --gold-light: #f0d599;
+  --gold-dim: #8b6e2e;
+  --gold-muted: rgba(201, 162, 75, 0.12);
+  --gold-glow: rgba(201, 162, 75, 0.22);
+
+  /* Text palette */
+  --cream: #f4efe6;
+  --cream-muted: rgba(244, 239, 230, 0.72);
+  --bronze: rgba(244, 239, 230, 0.52);
+  --bronze-dim: rgba(244, 239, 230, 0.32);
 }
 
+/* ─── Tailwind theme mapping ────────────────────────────────── */
 @theme inline {
   --color-ink: var(--ink);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dim: var(--gold-dim);
+  --color-gold-muted: var(--gold-muted);
   --color-cream: var(--cream);
+  --color-cream-muted: var(--cream-muted);
   --color-bronze: var(--bronze);
   --color-bronze-dim: var(--bronze-dim);
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+
+  /* Font families */
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-cormorant);
 }
 
+/* ─── Base ─────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
@@ -38,17 +55,19 @@ body {
   background: var(--ink);
   color: var(--cream);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   position: relative;
 }
 
-/* subtle film-grain texture overlay, tiled */
+/* Subtle film-grain overlay so flat dark sections keep some texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.035;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -58,15 +77,53 @@ body::before {
   color: var(--ink);
 }
 
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ─── Typography helpers ────────────────────────────────────── */
 .font-display {
   font-family: var(--font-display), ui-serif, Georgia, serif;
 }
 
 .tracked-label {
-  letter-spacing: 0.28em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
+.label-tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ─── Dividers ──────────────────────────────────────────────── */
 .hairline {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--line-strong), transparent);
@@ -77,24 +134,250 @@ body::before {
   background: var(--line);
 }
 
+/* ─── Buttons ───────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: #0c0c0c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 13px 28px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201, 162, 75, 0.28);
+}
+
+.btn-primary:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 12px 28px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: var(--gold-muted);
+}
+
+/* ─── Buttons — light-section variant (dark text, for white/off-white bg) ── */
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 12px 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--gold-dim);
+  color: #9a7629;
+  background: var(--gold-muted);
+}
+
+/* ─── Luxury Cards & Glass Surface ───────────────────────────── */
+.luxury-card {
+  background: rgba(18, 18, 23, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(201, 162, 75, 0.45);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.8), 0 0 30px -4px rgba(201, 162, 75, 0.15);
+  transform: translateY(-2px);
+}
+
+.luxury-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(201, 162, 75, 0.32);
+  background: rgba(201, 162, 75, 0.09);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.gold-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--cream);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Light Luxury Design System (Editorial Pearl & Antique Gold) ─── */
+.luxury-card-light {
+  background: #ffffff;
+  border: 1px solid rgba(18, 20, 26, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px -2px rgba(18, 20, 26, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-light:hover {
+  border-color: rgba(154, 118, 41, 0.45);
+  box-shadow: 0 16px 36px -8px rgba(18, 20, 26, 0.1), 0 0 24px -4px rgba(154, 118, 41, 0.15);
+  transform: translateY(-2px);
+}
+
+.gold-badge-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(154, 118, 41, 0.28);
+  background: rgba(154, 118, 41, 0.07);
+  color: #8b651b;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.gold-pill-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(18, 20, 26, 0.1);
+  background: #f7f6f2;
+  color: #374151;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+.gold-touch {
+  color: #9a7629;
+}
+
+/* ─── Service icon glyph (no box) ───────────────────────────── */
+.service-icon-wrap {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 32s linear infinite;
+  animation: marquee 36s linear infinite;
 }
 
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50%       { transform: translateY(-10px); }
 }
 
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes speed-line {
+  from { transform: translateX(60%); opacity: 0; }
+  10%  { opacity: var(--speed-line-opacity, 0.5); }
+  90%  { opacity: var(--speed-line-opacity, 0.5); }
+  to   { transform: translateX(-160%); opacity: 0; }
+}
+
+.animate-speed-line {
+  animation: speed-line linear infinite;
+}
+
+@keyframes shine-sweep {
+  0%, 20% { transform: translateX(-120%) rotate(12deg); opacity: 0; }
+  30%      { opacity: 0.5; }
+  45%, 100%{ transform: translateX(120%) rotate(12deg); opacity: 0; }
+}
+
+.animate-shine-sweep {
+  animation: shine-sweep 5s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float-slow,
+  .animate-speed-line,
+  .animate-shine-sweep {
+    animation: none !important;
+  }
 }
