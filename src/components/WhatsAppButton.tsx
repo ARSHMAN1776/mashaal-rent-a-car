@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { siteConfig, waLink } from "@/config/site";
 
 function WAIcon({ className = "" }: { className?: string }) {
@@ -11,13 +12,29 @@ function WAIcon({ className = "" }: { className?: string }) {
 }
 
 export function WhatsAppButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    // Hidden over the very first viewport so it never overlaps a page's
+    // hero content (e.g. the homepage hero's bottom stat band sits flush
+    // with this same bottom-right corner); appears once the visitor scrolls.
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <a
       href={waLink(`Hi Mashaal Rent A Car, I'd like to enquire about a rental.`)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Chat with ${siteConfig.name} on WhatsApp`}
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25d366] px-5 py-3 text-white text-[13px] font-semibold shadow-[0_8px_32px_rgba(37,211,102,0.35)] transition-all hover:bg-[#20bb5a] hover:shadow-[0_10px_36px_rgba(37,211,102,0.45)] hover:scale-[1.02] active:scale-95"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+      className={`fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25d366] px-5 py-3 text-white text-[13px] font-semibold shadow-[0_8px_32px_rgba(37,211,102,0.35)] transition-all hover:bg-[#20bb5a] hover:shadow-[0_10px_36px_rgba(37,211,102,0.45)] hover:scale-[1.02] active:scale-95 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
+      }`}
     >
       <WAIcon className="h-5 w-5 shrink-0" />
       <span className="hidden sm:block">Chat on WhatsApp</span>

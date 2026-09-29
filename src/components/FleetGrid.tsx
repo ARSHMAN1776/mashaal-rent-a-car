@@ -84,7 +84,7 @@ export function FleetGrid({ cars }: { cars: CarModel[] }) {
                         </div>
 
                         <div className="relative my-2 rounded-xl overflow-hidden bg-[#fbf9f5] border border-slate-200/60 p-2">
-                          <CarMedia car={car} variant="card" className="rounded-xl" />
+                          <CarMedia car={car} variant="light" className="rounded-xl" />
                           {/* Ambient vehicle ground reflection shadow */}
                           <div className="pointer-events-none absolute bottom-1.5 left-1/2 -translate-x-1/2 w-[75%] h-[10px] bg-gradient-to-r from-transparent via-[#121316]/18 to-transparent blur-[5px] rounded-full" />
                         </div>
